@@ -3,7 +3,7 @@ import sqlite3
 DB_NAME = "game.db"
 
 def init_db():
-    """Создаёт таблицу игровых событий, если её ещё нет."""
+    """Creates the game events table if it doesn't exist yet."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     cursor.execute('''
@@ -20,7 +20,7 @@ def init_db():
     conn.close()
 
 def log_event(user_id: str, event_type: str, event_data: str = "", amount: float = 0.0):
-    """Записывает одно событие в базу."""
+    """Logs a single event into the database."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     cursor.execute(
@@ -31,7 +31,7 @@ def log_event(user_id: str, event_type: str, event_data: str = "", amount: float
     conn.close()
 
 def count_events(user_id: str, event_type: str) -> int:
-    """Считает количество событий конкретного типа для пользователя."""
+    """Returns the number of events of a specific type for a user."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     cursor.execute(
@@ -43,7 +43,7 @@ def count_events(user_id: str, event_type: str) -> int:
     return count
 
 def total_revenue(user_id: str) -> float:
-    """Считает суммарную выручку с покупок пользователя."""
+    """Returns the total revenue from a user's purchases."""
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     cursor.execute(
